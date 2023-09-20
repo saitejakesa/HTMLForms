@@ -1,10 +1,10 @@
 // const onclick_event=()=>{
-//     document.querySelector(".tabualarFirstName").innerText="#FirstNameInput1";
+//     document.querySelector(".tabualarFirstName").innerText="#first-name";
 //     document.querySelector(".tabularSecondname").innerText="#SecondNameInput1";
 //     document.querySelector(".tabularaddress").innerText="#AddressInput1";
 //     document.querySelector(".tabularPincode").innerText="#PincodeInput1";
-//     document.querySelector(".tabularGender").innerText="#FirstNameInput1";
-//     document.querySelector(".tabularFavfood").innerText="#FirstNameInput1";
+//     document.querySelector(".tabularGender").innerText="#first-name";
+//     document.querySelector(".tabularFavfood").innerText="#first-name";
 //     document.querySelector(".tabularstate").innerText="#StateInput1";
 //     document.querySelector(".tabularcountry").innerText="#CoutryInput1";
 // }
@@ -19,16 +19,19 @@ let n=1
    let list6=[]
    let list7=[]
    let list8=[]
-function submit(){
+
+function submitdetails(event){
+  console.log("submitted");
+  event.preventDefault();
   
   let submit1 = document.querySelector('#table1');
   let newrow=submit1.insertRow(n)
   let vikas;
 
-   list1[x]=document.querySelector('#FirstNameInput1').value;
-   list2[x]=document.querySelector('#SecondNameInput1').value;
-   list3[x]=document.querySelector('#AddressInput1').value;
-   list4[x]=document.querySelector('#PincodeInput1').value;
+   list1[x]=document.getElementById('first-name').value;
+   list2[x]=document.querySelector('#last-name').value;
+   list3[x]=document.querySelector('#address').value;
+   list4[x]=document.querySelector('#pincode').value;
    list5[x]=document.querySelector('.radio-check-input:checked').value;
    //let checkboxes=document.querySelectorAll('.form-check-input')
   
@@ -37,24 +40,25 @@ function submit(){
    let checkboxes=document.querySelectorAll('.form-check-input:checked')
 
    
-   if(checkboxes.length>max){
+   if(checkboxes.length<max){
+      flag=false;
+      
+    alert("Please select atleast 3 foods ")
+    clearAll();
+    deleterow=submit1.deleterow(n)
+      }
+   else{
     for (let checkbox of checkboxes) {
-      flag=true
+      flag=true;
       vikas+=" ,"+checkbox.value
     }
     list6[x]=vikas.slice(11)
-      }
-   else{
-     flag=false
-    alert("Please select atleast 3 foods ")
 
    }
 
    
    list7[x]=document.querySelector('#StateInput1').value;
    list8[x]=document.querySelector('#CoutryInput1').value;
-
-   
 
 
    let cel1=newrow.insertCell(0)
@@ -65,14 +69,6 @@ function submit(){
    let cel6=newrow.insertCell(5)
    let cel7=newrow.insertCell(6)
    let cel8=newrow.insertCell(7)
-
-
-   
-
-
-  
-
-
 
    cel1.innerHTML = list1[x]
    cel2.innerHTML = list2[x]
@@ -87,10 +83,12 @@ function submit(){
 
 
    
+  clearAll() 
    
+  }
 
-   const inputs = document.querySelectorAll('#FirstNameInput1,#SecondNameInput1,#AddressInput1,#PincodeInput1,#radiobuttonsallign,#checkboxesallign,#StateInput1,#CoutryInput1');
-
+  function clearAll(){
+    const inputs = document.querySelectorAll('#first-name,#last-name,#address,#pincode,#radiobuttonsallign,#checkboxesallign,#StateInput1,#CoutryInput1');
   inputs.forEach(input => {
     input.value = '';
   });
@@ -106,3 +104,4 @@ function submit(){
     
   }
 }
+
